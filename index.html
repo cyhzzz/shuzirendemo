@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字人投顾DEMO展示 | 美漫风格</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #ff7eb4;
+            --secondary-color: #7afcff;
+            --accent-color: #feff9c;
+            --dark-color: #2d3436;
+            --light-color: #f8f9fa;
+            --border-width: 3px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            min-height: 100vh;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f8f9fa"/><path d="M0,50 Q50,30 100,50 L100,100 L0,100 Z" fill="%23e9ecef"/></svg>');
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        h1 {
+            color: var(--dark-color);
+            font-size: 3.2rem;
+            margin: 30px 0 15px;
+            text-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+            position: relative;
+            display: inline-block;
+        }
+
+        h1:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 10%;
+            width: 80%;
+            height: 8px;
+            background: var(--accent-color);
+            border-radius: 4px;
+            z-index: -1;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .section-title {
+            color: var(--dark-color);
+            padding: 15px 20px;
+            margin: 50px 0 30px;
+            font-size: 1.8rem;
+            background: var(--accent-color);
+            border-radius: 12px;
+            display: inline-block;
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+            border: var(--border-width) solid var(--dark-color);
+            position: relative;
+            z-index: 1;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: var(--border-width) solid var(--dark-color);
+            position: relative;
+            transform: translateY(0) rotate(0);
+        }
+
+        .card:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            z-index: 10;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border: 3px solid var(--primary-color);
+            border-radius: 24px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+            object-fit: contain;
+            object-position: center;
+            border-bottom: var(--border-width) solid var(--dark-color);
+            transition: transform 0.5s ease;
+        }
+
+        .vertical-img {
+            height: 300px;
+            width: auto;
+            max-width: 100%;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 20px;
+            position: relative;
+        }
+
+        .card-body h3 {
+            color: var(--dark-color);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .card-body h3:after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .card-body p {
+            color: #555;
+            line-height: 1.6;
+            margin-top: 15px;
+        }
+
+        .audio-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .audio-card {
+            background: white;
+            padding: 20px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            border: var(--border-width) solid var(--dark-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .audio-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+        }
+
+        .audio-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 8px;
+            background: var(--secondary-color);
+        }
+
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border: 2px solid white;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 7px 20px rgba(0,0,0,0.3);
+        }
+
+        .play-btn.playing {
+            background: linear-gradient(135deg, #ff4d94, #00e5ff);
+        }
+
+        .audio-info {
+            flex: 1;
+        }
+
+        .audio-title {
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .audio-desc {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            margin-top: 12px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            width: 0%;
+            border-radius: 3px;
+            transition: width 0.1s linear;
+        }
+
+        .video-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin: 40px 0 60px;
+            border: var(--border-width) solid var(--dark-color);
+            transition: all 0.4s ease;
+        }
+
+        .video-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        video {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+            border-bottom: var(--border-width) solid var(--dark-color);
+        }
+
+        .video-description {
+            padding: 25px;
+            background: linear-gradient(to right, #f8f9fa, white);
+        }
+
+        .video-description h3 {
+            color: var(--dark-color);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .video-description p {
+            color: #555;
+            line-height: 1.7;
+            max-width: 800px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            text-align: center;
+            border: var(--border-width) solid var(--dark-color);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.4rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+
+        .feature-desc {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            margin-top: 50px;
+            border-top: 2px dashed #ddd;
+        }
+
+        .speech-bubble {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            background: var(--accent-color);
+            padding: 12px 18px;
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
+            border: 2px solid var(--dark-color);
+            transform: rotate(5deg);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(5deg); }
+            50% { transform: translateY(-10px) rotate(3deg); }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            video {
+                height: 300px;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="speech-bubble">全新体验!</div>
+            <h1>数字人投顾展示DEMO</h1>
+            <p class="subtitle">融合AI技术与金融投资，打造未来感十足的数字人投资顾问体验。美漫风格界面，交互灵动，体验升级！</p>
+        </div>
+
+        <h2 class="section-title">原始素材</h2>
+        <div class="gallery">
+            <div class="card">
+                <img src="./pic/小杨同学.jpg" alt="原始形象" class="vertical-img">
+                <div class="card-body">
+                    <h3>原始形象</h3>
+                    <p>真实人物原型，作为数字人建模的基础素材</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">数字人生成形象</h2>
+        <div class="gallery">
+            <div class="card">
+                <img src="./pic/小杨1.png" alt="数字人形象1">
+                <div class="card-body">
+                    <h3>生活化形象</h3>
+                    <p>活泼亲切的形象设计，户外场景</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="./pic/小杨2.png" alt="数字人形象2">
+                <div class="card-body">
+                    <h3>专业形象</h3>
+                    <p>民族服饰的形象，适用于区域特色场景</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">数字人语音案例</h2>
+        <div class="audio-list">
+            <div class="audio-card">
+                <div class="play-btn" onclick="togglePlay('audio1', this)"><i class="fas fa-play"></i></div>
+                <audio id="audio1" src="./vioce/小杨-加1调直播间引流.mp3"></audio>
+                <div class="audio-info">
+                    <div class="audio-title">直播间引流话术</div>
+                    <div class="audio-desc">吸引用户进入直播间的开场白</div>
+                    <div class="progress-container" onclick="setProgress(event, 'audio1')">
+                        <div class="progress-bar" id="progress1"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="audio-card">
+                <div class="play-btn" onclick="togglePlay('audio2', this)"><i class="fas fa-play"></i></div>
+                <audio id="audio2" src="./vioce/小杨-投资助理服务.mp3"></audio>
+                <div class="audio-info">
+                    <div class="audio-title">股东人数策略介绍1</div>
+                    <div class="audio-desc">股东人数布局及资料领取说明</div>
+                    <div class="progress-container" onclick="setProgress(event, 'audio2')">
+                        <div class="progress-bar" id="progress2"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="audio-card">
+                <div class="play-btn" onclick="togglePlay('audio3', this)"><i class="fas fa-play"></i></div>
+                <audio id="audio3" src="./vioce/小杨-股东人数布局领取资料.mp3"></audio>
+                <div class="audio-info">
+                    <div class="audio-title">股东人数策略介绍2</div>
+                    <div class="audio-desc">投资助理服务的详细说明</div>
+                    <div class="progress-container" onclick="setProgress(event, 'audio3')">
+                        <div class="progress-bar" id="progress3"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="audio-card">
+                <div class="play-btn" onclick="togglePlay('audio3', this)"><i class="fas fa-play"></i></div>
+                <audio id="audio3" src="./vioce/小杨同学.m4a"></audio>
+                <div class="audio-info">
+                    <div class="audio-title">原始音频</div>
+                    <div class="audio-desc">使用MiniMax语音模型处理</div>
+                    <div class="progress-container" onclick="setProgress(event, 'audio3')">
+                        <div class="progress-bar" id="progress3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">数字人视频演示</h2>
+        <div class="video-container">
+            <video controls poster="./pic/小杨1.png" class="vertical-img">
+                <source src="./video/demo.mp4" type="video/mp4">
+                您的浏览器不支持视频播放
+            </video>
+            <div class="video-description">
+                <h3>虚拟投顾服务演示</h3>
+                <p>展示数字人口播视频demo</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 数字人投顾DEMO展示 </p>
+            <p>本页面仅用于产品功能展示，不构成任何投资建议</p>
+        </div>
+    </div>
+
+    <script>
+        // 音频播放控制
+        function togglePlay(audioId, btn) {
+            const audio = document.getElementById(audioId);
+            const icon = btn.querySelector('i');
+            
+            if(audio.paused) {
+                audio.play();
+                icon.classList.remove('fa-play');
+                icon.classList.add('fa-pause');
+                btn.classList.add('playing');
+            } else {
+                audio.pause();
+                icon.classList.remove('fa-pause');
+                icon.classList.add('fa-play');
+                btn.classList.remove('playing');
+            }
+            
+            // 更新进度条
+            audio.addEventListener('timeupdate', function() {
+                const progress = (audio.currentTime / audio.duration) * 100;
+                document.getElementById('progress' + audioId.slice(-1)).style.width = progress + '%';
+                
+                if (audio.ended) {
+                    icon.classList.remove('fa-pause');
+                    icon.classList.add('fa-play');
+                    btn.classList.remove('playing');
+                }
+            });
+        }
+        
+        // 设置音频进度
+        function setProgress(event, audioId) {
+            const audio = document.getElementById(audioId);
+            const progressBar = document.getElementById('progress' + audioId.slice(-1));
+            const progressContainer = event.currentTarget;
+            const clickX = event.offsetX;
+            const containerWidth = progressContainer.clientWidth;
+            const seekTime = (clickX / containerWidth) * audio.duration;
+            
+            audio.currentTime = seekTime;
+            progressBar.style.width = (seekTime / audio.duration) * 100 + '%';
+        }
+        
+        // 卡片悬停效果增强
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const angleY = (x - centerX) / 25;
+                const angleX = (centerY - y) / 25;
+                
+                this.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateZ(10px)`;
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+            });
+        });
+    </script>
+</body>
+</html>
