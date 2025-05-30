@@ -278,6 +278,11 @@
             margin: 40px 0 60px;
             border: var(--border-width) solid var(--dark-color);
             transition: all 0.4s ease;
+            /* 新增网格布局 */
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px;
         }
 
         .video-container:hover {
@@ -287,93 +292,11 @@
 
         video {
             width: 100%;
-            height: 500px;
+            height: 400px; /* 调整高度 */
             object-fit: cover;
             display: block;
             border-bottom: var(--border-width) solid var(--dark-color);
-        }
-
-        .video-description {
-            padding: 25px;
-            background: linear-gradient(to right, #f8f9fa, white);
-        }
-
-        .video-description h3 {
-            color: var(--dark-color);
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-
-        .video-description p {
-            color: #555;
-            line-height: 1.7;
-            max-width: 800px;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin: 50px 0;
-        }
-
-        .feature-card {
-            background: white;
-            padding: 25px;
-            border-radius: 18px;
-            text-align: center;
-            border: var(--border-width) solid var(--dark-color);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px) rotate(2deg);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
-        .feature-title {
-            font-size: 1.4rem;
-            color: var(--dark-color);
-            margin-bottom: 15px;
-        }
-
-        .feature-desc {
-            color: #555;
-            line-height: 1.6;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 30px;
-            color: #666;
-            margin-top: 50px;
-            border-top: 2px dashed #ddd;
-        }
-
-        .speech-bubble {
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            background: var(--accent-color);
-            padding: 12px 18px;
-            border-radius: 20px;
-            font-weight: bold;
-            box-shadow: 3px 3px 0 rgba(0,0,0,0.1);
-            border: 2px solid var(--dark-color);
-            transform: rotate(5deg);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(5deg); }
-            50% { transform: translateY(-10px) rotate(3deg); }
+            border-radius: 12px; /* 添加圆角 */
         }
 
         @media (max-width: 768px) {
@@ -386,6 +309,10 @@
             }
             
             .gallery {
+                grid-template-columns: 1fr;
+            }
+            /* 移动端改为单列布局 */
+            .video-container {
                 grid-template-columns: 1fr;
             }
         }
@@ -440,7 +367,7 @@
             </div>
         </div>
 
-        <h2 class="section-title">数字人语音案例</h2>
+        <h2 class="section-title">数字人语音案例-MiniMax</h2>
         <div class="audio-list">
             <div class="audio-card">
                 <div class="play-btn" onclick="togglePlay('audio1', this)"><i class="fas fa-play"></i></div>
@@ -477,10 +404,22 @@
             </div>
         </div>
 
-        <h2 class="section-title">数字人视频演示</h2>
+        <h2 class="section-title">数字人视频演示-即梦对口型</h2>
         <div class="video-container">
             <video controls poster="./pic/小杨1.png" class="vertical-img">
                 <source src="./video/demo.mp4" type="video/mp4">
+                您的浏览器不支持视频播放
+            </video>
+            <video controls poster="./pic/小杨3.png" class="vertical-img">
+                <source src="./video/night.mp4" type="video/mp4">
+                您的浏览器不支持视频播放
+            </video>
+            <video controls poster="./pic/office.jpg" class="vertical-img">
+                <source src="./video/office.mp4" type="video/mp4">
+                您的浏览器不支持视频播放
+            </video>
+            <video controls poster="./pic/doll.jpg" class="vertical-img">
+                <source src="./video/doll.mp4" type="video/mp4">
                 您的浏览器不支持视频播放
             </video>
             <div class="video-description">
