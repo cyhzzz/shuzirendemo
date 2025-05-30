@@ -128,7 +128,7 @@
         }
 
         .card img {
-            width: 100%;
+            width: auto;
             height: auto;
             max-height: 300px;
             object-fit: contain;
@@ -396,7 +396,7 @@
         <div class="header">
             <div class="speech-bubble">全新体验!</div>
             <h1>数字人投顾展示DEMO</h1>
-            <p class="subtitle">融合AI技术与金融投资，打造未来感十足的数字人投资顾问体验！</p>
+            <p class="subtitle">融合AI技术与金融投资，打造未来感十足的数字人投资顾问体验。</p>
         </div>
 
         <h2 class="section-title">原始素材</h2>
@@ -409,18 +409,30 @@
                 </div>
             </div>
         </div>
+        <div class="audio-card">
+            <div class="play-btn" onclick="togglePlay('audio4', this)"><i class="fas fa-play"></i></div>
+            <audio id="audio4" src="./vioce/小杨同学.m4a"></audio>
+            <div class="audio-info">
+                <div class="audio-title">原始音频</div>
+                <div class="audio-desc">这个是原始音频，下边的使用MiniMax语音模型生成</div>
+                <div class="progress-container" onclick="setProgress(event, 'audio4')">
+                    <div class="progress-bar" id="progress4"></div>
+                </div>
+            </div>
+        </div>
 
-        <h2 class="section-title">数字人生成形象</h2>
+        <h2 class="section-title">数字人生成形象-即梦生图</h2>
         <div class="gallery">
             <div class="card">
-                <img src="./pic/小杨1.png" alt="数字人形象1">
+                <img src="./pic/小杨1.png" alt="数字人形象1" class="vertical-img">
+                <img src="./pic/小杨3.png" alt="数字人形象3" class="vertical-img">
                 <div class="card-body">
                     <h3>生活化形象</h3>
                     <p>活泼亲切的形象设计，户外场景</p>
                 </div>
             </div>
             <div class="card">
-                <img src="./pic/小杨2.png" alt="数字人形象2">
+                <img src="./pic/小杨2.png" alt="数字人形象2" class="vertical-img">
                 <div class="card-body">
                     <h3>专业形象</h3>
                     <p>民族服饰的形象，适用于区域特色场景</p>
@@ -463,17 +475,6 @@
                     </div>
                 </div>
             </div>
-            <div class="audio-card">
-                <div class="play-btn" onclick="togglePlay('audio4', this)"><i class="fas fa-play"></i></div>
-                <audio id="audio4" src="./vioce/小杨同学.m4a"></audio>
-                <div class="audio-info">
-                    <div class="audio-title">原始音频</div>
-                    <div class="audio-desc">这个是原始音频，上边的均为使用MiniMax语音模型生成</div>
-                    <div class="progress-container" onclick="setProgress(event, 'audio4')">
-                        <div class="progress-bar" id="progress4"></div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <h2 class="section-title">数字人视频演示</h2>
@@ -484,7 +485,7 @@
             </video>
             <div class="video-description">
                 <h3>虚拟投顾服务演示</h3>
-                <p>展示数字人口播视频demo</p>
+                <p>使用即梦模型对口型生成，展示数字人口播视频demo</p>
             </div>
         </div>
 
